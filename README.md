@@ -19,7 +19,8 @@ project.config.json
 "appid": "填入你的appid",
 ```
 
-2. 在 ./miniprogram/app.js 文件中，配置初始化函数的 “env” 参数
+2. 打开云开发控制台，复制左上角的‘环境ID’
+   在 ./miniprogram/app.js 文件中，将‘环境ID’ 代入 “env” 参数
 
 ./miniprogram/app.js
 ``` js
@@ -28,3 +29,6 @@ wx.cloud.init({
   traceUser: true,
 })
 ```
+
+3. 右键cloudfunction，选择你的云开发环境（与你刚刚复制的那个‘环境ID’保持一致），然后
+   右键 cloudfunction/ 目录下的文件夹，并点击“上传并部署”
