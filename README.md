@@ -16,7 +16,7 @@
 
 project.config.json
 ``` json
-"appid": "",
+"appid": "填入你的appid",
 ```
 
 2. 在 ./miniprogram/app.js 文件中，配置初始化函数的 “env” 参数
@@ -24,7 +24,7 @@ project.config.json
 ./miniprogram/app.js
 ``` js
 wx.cloud.init({
-  env: 'arthurslo',
+  env: '填入你的云开发的‘环境ID’',
   traceUser: true,
 })
 ```
