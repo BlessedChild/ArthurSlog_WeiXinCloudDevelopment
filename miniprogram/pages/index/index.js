@@ -7,7 +7,10 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    fileID: '',
+    cloudPath: '',
+    imagePath: './user-unlogin.png',
   },
 
   onLoad: function() {
@@ -146,5 +149,44 @@ Page({
         console.log(res.result)
       })
       .catch(console.error)
+  },
+
+  // 添加前端代码,向云端上传图片
+  arthurSlog_uploadImg: function() {
+    // 选择图片
+    const this_ = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+
+        this_.setData({
+          imagePath: tempFilePaths[0],
+        })
+
+        console.log(tempFilePaths[0])
+
+        const filePath = tempFilePaths[0]
+        const cloudPath = 'ArthurSlog' + filePath.match(/\.[^.]+?$/)[0]
+        wx.cloud.uploadFile({
+          cloudPath,
+          filePath, // 小程序临时文件路径
+        }).then(res => {
+          // get resource ID
+          console.log(res.fileID)     //success返回的fileID值    
+          console.log(res.statusCode) //success返回的statusCode值
+        }).catch(error => {
+          // handle error
+          console.error('[上传文件] 失败：', error)
+          wx.showToast({
+            icon: 'none',
+            title: '上传失败',
+          })
+          })
+      }
+    })
   },
 })

@@ -28,13 +28,6 @@
     </navigator>
   </view>
 
-  <!-- 新建云函数 -->
-  <view class="uploader">
-    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-      <text>快速新建云函数</text>
-    </navigator>
-  </view>
-
   <!-- 获取 openid -->
   <view class="uploader">
     <button class="userinfo-nickname" bindtap="arthurSlog_getInfo">点击获取 openid</button>
@@ -43,6 +36,15 @@
   <!-- 返回两个对象之和 -->
   <view class="uploader">
     <button class="userinfo-nickname" bindtap="arthurSlog_methodAdd">点击返回两个对象之和</button>
+  </view>
+
+  <!-- 上传图片 -->
+  <view class="uploader">
+    <button class="userinfo-nickname" bindtap="arthurSlog_uploadImg">上传图片</button>
+  </view>
+  <!-- 显示图片 -->
+  <view>
+    <image class="img" src="{{imagePath}}" mode="scaleToFill"></image>
   </view>
 
 </view>
