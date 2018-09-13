@@ -152,7 +152,7 @@ Page({
   },
 
   // 添加前端代码,向云端上传图片
-  arthurSlog_uploadImg: function() {
+  arthurSlog_uploadImg: function () {
     // 选择图片
     const this_ = this
     wx.chooseImage({
@@ -162,6 +162,10 @@ Page({
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
         const tempFilePaths = res.tempFilePaths
+
+        wx.showLoading({
+          title: '上传中',
+        })
 
         this_.setData({
           imagePath: tempFilePaths[0],
@@ -176,7 +180,7 @@ Page({
           filePath, // 小程序临时文件路径
         }).then(res => {
           // get resource ID
-          console.log(res.fileID)     //success返回的fileID值    
+          console.log(res.fileID) //success返回的fileID值    
           console.log(res.statusCode) //success返回的statusCode值
         }).catch(error => {
           // handle error
@@ -185,7 +189,9 @@ Page({
             icon: 'none',
             title: '上传失败',
           })
-          })
+        }).then(() => {
+          wx.hideLoading()
+        })
       }
     })
   },
