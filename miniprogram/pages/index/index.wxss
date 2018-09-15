@@ -135,3 +135,8 @@ page {
   line-height: 36rpx;
   word-break: break-all;
 }
+
+.textOpenid{
+  font-size:24rpx;
+  word-break: break-all;
+}

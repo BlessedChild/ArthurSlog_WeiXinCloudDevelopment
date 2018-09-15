@@ -11,6 +11,8 @@ Page({
     fileID: '',
     cloudPath: '',
     imagePath: './user-unlogin.png',
+    openid:'',
+    sumResult:'',
   },
 
   onLoad: function() {
@@ -124,10 +126,14 @@ Page({
   // 这里我们把结果在控制台打印出来
   // 返回appId 和 openId的数据，并保存在res对象中
   arthurSlog_getInfo: function() {
+    const this_ = this
     wx.cloud.callFunction({
       name: 'arthurSlog_getInfo',
       complete: res => {
         console.log('callFunction test result: ', res)
+        this_.setData({
+          openid: res.result.openId
+        })
       }
     })
   },
@@ -136,6 +142,7 @@ Page({
   // 这里我们把结果在控制台打印出来
   // 返回appId 和 openId的数据，并保存在res对象中
   arthurSlog_methodAdd: function() {
+    const this_ = this
     wx.cloud.callFunction({
         // 云函数名称
         name: 'arthurSlog_methodAdd',
@@ -147,6 +154,9 @@ Page({
       })
       .then(res => {
         console.log(res.result)
+        this_.setData({
+          sumResult: res.result.sum
+        })
       })
       .catch(console.error)
   },
