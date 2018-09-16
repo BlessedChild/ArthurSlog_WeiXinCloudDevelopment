@@ -4,16 +4,15 @@ const app = getApp()
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
-    userInfo: {},
+    userInfo: {}, // 用户信息
     logged: false, // 用来判断用户是否已经授权过了
-    fileID: '',
-    cloudPath: '',
-    imagePath: '',
+    cloudPath: '', // 云端存放文件的路径
+    imagePath: '', // 本地图片文件的路径
     openid: '',
-    sumResult: '',
-    page_iq: '',
-    user_nickName: '',
-    user_dbFlag: false,
+    sumResult: '', // 云端求和的结果
+    page_iq: '', // 页面上显示的iq值
+    user_nickName: '', // 微信名
+    user_dbFlag: false, // 判断标志：判断用户在云端数据库是否存在数据
   },
 
   // 小程序页面打开时，默认执行的函数
@@ -48,7 +47,7 @@ Page({
               const _ = db.command
               // 读取用户数据，并渲染在页面上
               db.collection('Users').where({
-                _openid: _.eq(app.globalData.openid)// 填入当前用户 openid
+                _openid: _.eq(app.globalData.openid) // 填入当前用户 openid
               }).get().then(res => {
                 console.log(res.data)
                 if (res.data != null) {
@@ -167,10 +166,10 @@ Page({
               }
             })
             .then(res => {
-                this_.setData({
-                  page_iq: '10',
-                  user_dbFlag: true
-                })
+              this_.setData({
+                page_iq: '10',
+                user_dbFlag: true
+              })
               // 添加新表成功之后，打印数据库的新用户信息
               console.log(res)
               app.globalData._id = res._id
